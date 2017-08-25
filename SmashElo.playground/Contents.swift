@@ -57,20 +57,22 @@ class SmashPlayer {
     //Might want to revisit krating formula, for now it's just a range
     func calckRating() {
         if entries < 3 {
-            kRating = 34 - entries
+            kRating = 300 - entries
         } else if entries < 6 {
-            kRating = 26 - entries
+            kRating = 250 - entries
         } else if entries < 10 {
-            kRating = 18
+            kRating = 200
         }
     }
     
     func getExpectation(player1: SmashPlayer, player2: SmashPlayer) -> Double {
         //calculos confiando en http://stephenwan.net/thoughts/2012/10/02/elo-rating-system.html , parece confiable asi que FUCK IT MAGIC HAPPENS
-        let calc = (1.0 / (1.0 + pow(10, ((player1.rating - player2.rating) / 400))))
+        let calc = (1.0 / (1.0 + pow(10, ((player2.rating - player1.rating) / 1600))))
         return calc
     }
 }
+
+pow(2.0,3.0)
 
 
 /* 
@@ -476,6 +478,76 @@ Ra9nar  .match(with: Andrei,    result: .lose)
 Fong    .match(with: Ra9nar,    result: .win)
 Ra9nar  .match(with: Fong,      result: .win)
 
+// Onceavo torneo - Rookies4 (incompleto)
+ElJorge     .enterAnotherTournament()    //Primer torneo de ElJorge, woop
+Eliard      .enterAnotherTournament()
+var getRekt = SmashPlayer(nameDisplay: "getRekt")
+Frank       .enterAnotherTournament()
+Iram        .enterAnotherTournament()
+Leo         .enterAnotherTournament()
+Javi        .enterAnotherTournament()
+Dan         .enterAnotherTournament()
+//Reorganizar cuando suceda el final
+Tonio       .enterAnotherTournament()
+Andrei      .enterAnotherTournament()
+Ra9nar      .enterAnotherTournament()
+Noe         .enterAnotherTournament()
+var Xavi    = SmashPlayer(nameDisplay: "Xavi")
+Fong        .enterAnotherTournament()
+CesarT      .enterAnotherTournament()
+
+Tonio   .match(with: Xavi,      result: .win)
+ElJorge .match(with: Tonio,     result: .win)
+Dan     .match(with: Tonio,     result: .win)
+Dan     .match(with: ElJorge,   result: .lose)
+Xavi    .match(with: Dan,       result: .lose)
+Xavi    .match(with: ElJorge,   result: .lose)
+
+CesarT  .match(with: Eliard,    result: .lose)
+Javi    .match(with: CesarT,    result: .win)
+Fong    .match(with: CesarT,    result: .draw)
+Fong    .match(with: Javi,      result: .lose)
+Eliard  .match(with: Fong,      result: .win)
+Eliard  .match(with: Javi,      result: .win)
+
+Ra9nar  .match(with: Iram,      result: .draw)
+Andrei  .match(with: Ra9nar,    result: .win)
+getRekt .match(with: Ra9nar,    result: .win)
+getRekt .match(with: Andrei,    result: .win)
+Iram    .match(with: getRekt,   result: .lose)
+Iram    .match(with: Andrei,    result: .win)
+
+Frank   .match(with: Noe,       result: .win)
+Leo     .match(with: Frank,     result: .win)
+Noe     .match(with: Leo,       result: .lose)
+
+ElJorge .match(with: Javi,      result: .win)
+getRekt .match(with: Frank,     result: .win)
+Dan     .match(with: Eliard,    result: .lose)
+Iram    .match(with: Leo,       result: .win)
+
+ElJorge .match(with: getRekt,   result: .win)
+Eliard  .match(with: Iram,      result: .win)
+Javi    .match(with: Frank,     result: .lose)
+Iram    .match(with: Leo,       result: .lose)
+
+Iram    .match(with: Frank,     result: .lose)
+getRekt .match(with: Leo,       result: .win)
+
+ElJorge .match(with: Eliard,    result: .win)
+Frank   .match(with: getRekt,   result: .lose)
+Eliard  .match(with: getRekt,   result: .win)
+ElJorge .match(with: Eliard,    result: .lose)
+Eliard  .match(with: ElJorge,   result: .lose)
+
+//Group 4 people template
+//Tonio.match(with: Xavi, result: .win)
+//ElJorge.match(with: Tonio, result: .win)
+//Dan.match(with: Tonio, result: .win)
+//Dan.match(with: ElJorge, result: .win)
+//Xavi.match(with: Dan, result: .win)
+//Xavi.match(with: ElJorge, result: .win)
+//
 //Top 8 template
 //Javier.match(with: Islas, result: .lose)
 //ElNinio.match(with: Dan, result: .win)
@@ -496,8 +568,10 @@ Ra9nar  .match(with: Fong,      result: .win)
 //Iram.match(with: Dan, result: .win)
 
 
+
 //Current scores
 var playersArray: [SmashPlayer] = [Eliard, Frank, Rene, Gus, Iram, Edy, Ra9nar, Lexas, CesarT, Gera, Leo, ElJorge, BK201, CarlosNator, Fer, DJTetor, Dan, Javi, Tomas, Islas, Kapek, Marcos, ElNinio, Diego, Tonio, Noe, Fong, Andrei]
+
 
 playersArray = playersArray.sorted(by: { $0.rating > $1.rating })
 for player in playersArray {
